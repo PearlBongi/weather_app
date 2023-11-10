@@ -1,160 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <title>Weatherpage</title>
-    <style>
-      .body {
-        background: #8ef6e4;
-      }
-      h1 {
-        color: #9896f1;
-        font-size: 28px;
-        font-weight: 70px;
-        text-align: center;
-      }
-      .current-degrees {
-        text-align: center;
-        font-size: 30px;
-        margin: 30px;
-      }
-      .bold-degrees {
-        font-weight: bold;
-      }
-      .days {
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        width: 30%;
-        margin: auto;
-      }
-      .first-degree {
-        font-size: 14px;
-        font-weight: lighter;
-      }
-      .second-degree {
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      ul {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-        font-weight: bold;
-      }
-
-      li {
-        text-align: center;
-        display: inline-block;
-        margin: 0 10px;
-        position: relative;
-        padding: 10px;
-        border-radius: 5px;
-        transition: ease-in-out;
-        cursor: pointer;
-      }
-      ul:hover {
-        background-color: #c9dfdf;
-        transition: all 100ms ease-in-out;
-        border-radius: 5%;
-      }
-      .center-container {
-        text-align: center;
-      }
-      .change-city {
-        padding: 15px 20px;
-        color: white;
-        display: block;
-        text-decoration: none;
-        font-size: 16px;
-        border-radius: 40px;
-        margin: 0 auto;
-        border: 1px solid #885df1;
-        background: #9896f1;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-        transition: all 100ms ease-in-out;
-      }
-      .change-city:hover {
-        background: white;
-        color: #9896f1;
-        cursor: pointer;
-      }
-      h2 {
-        color: #9896f1;
-        font-weight: 80;
-        text-align: center;
-        font-size: 18px;
-      }
-
-      .flex {
-        display: flex;
-      }
-
-      .flex li {
-        margin: auto;
-      }
-    </style>
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Meteo App</title>
   </head>
   <body>
-    <h1>
-      <span class="sun">⛅</span>
-      <br />
-      Currently 28°C in Tokyo
-    </h1>
-    <div class="current-degrees">
-      <span class="degrees">13° / </span>
+    <div class="weather-app">
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            id="search-form-input"
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
+        </form>
+      </header>
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city" id="city">Paris</h1>
+            <p class="weather-app-details">
+              Tuesday 14:49, scattered clouds
+              <br />
+              Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
+            </p>
+          </div>
+          <div class="weather-app-temperature-container">
+            <div class="weather-app-icon">🌤️</div>
+            <div class="weather-app-temperature">12</div>
+            <div class="weather-app-unit">°C</div>
+          </div>
+        </div>
+      </main>
 
-      <span class="bold-degrees"> 23°</span>
+      <footer>
+        This project was coded by
+        <a href="https://github.com/PearlBongi/" target="_blank"> Pearl Bongi</a>,
+        is
+        <a href="https://github.com/PearlBongi/weather_app" target="_blank"
+          >open-sourced on GitHub</a
+        >
+        and
+        <a href="https://pearlbongi-weather-search.netlify.app//" target="_blank"
+          >hosted on Netlify</a
+        >
+      </footer>
     </div>
-
-    <div class="days">
-      <ul>
-        <li class="weekly">🌧 Tomorrow</li>
-        <br />
-        <li class="first-degree">10° /</li>
-        <li class="second-degree">22°</li>
-      </ul>
-      <ul>
-        <li class="weekly">🌥 Saturday</li>
-        <br />
-        <li class="first-degree">15° /</li>
-        <li class="second-degree">17°</li>
-      </ul>
-      <ul>
-        <li class="weekly">☀️ Sunday</li>
-        <br />
-        <li class="first-degree">25°/</li>
-        <li class="second-degree">28°</li>
-      </ul>
-    </div>
-
-    <div class="center-container"></div>
-    <button class="change-city">Change City</button>
-    <h2>Coded by Pearl Mapoge</h2>
-    <script>
-      function changeCity() {
-        let city = prompt("Which city do you live in?");
-        let temperature = prompt("What temperature is it?");
-
-        if (temperature >= 0) {
-          let h1 = document.querySelector("h1");
-          h1.innerHTML = "😄 <br />Currently " + temperature + "°C in " + city;
-          alert("Currently " + temperature + "°C in " + city);
-        } else {
-          let h1 = document.querySelector("h1");
-          h1.innerHTML = "☹️ <br/>Currently " + temperature + "°C in " + city;
-        }
-      }
-      let changeCityButton = document.querySelector("button");
-
-      changeCityButton.addEventListener("click", changeCity);
-    </script>
+    <script src="src/index.js"></script>
   </body>
 </html>
